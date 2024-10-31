@@ -1,9 +1,7 @@
 package com.youcode.survey.models.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +13,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "answer")
 public class Answer {
 
     @Id
@@ -29,4 +28,7 @@ public class Answer {
 
     @Column
     private int percentage;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Question question;
 }
