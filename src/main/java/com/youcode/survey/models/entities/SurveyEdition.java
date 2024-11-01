@@ -30,7 +30,7 @@ public class SurveyEdition {
     private LocalDate startDate;
 
     @Column
-    private LocalDate Year;
+    private int Year;
 
     @OneToMany(mappedBy = "surveyEdition" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Subject> subjects;
