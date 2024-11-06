@@ -29,11 +29,11 @@ public class Subject {
     @JoinColumn(name = "parentId")
     private Subject subject;
 
-    @OneToMany(mappedBy = "survey", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
     private Set<Question> question;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private SurveyEdition surveyEditions;
+    private SurveyEdition surveyEdition;
 
 
 }

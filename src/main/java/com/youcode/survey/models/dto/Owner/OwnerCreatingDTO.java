@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OwnerCreatingDTO {
 
-    @NotBlank
+    @NotBlank(message = "The name can't be empty ")
     private String name;
 }

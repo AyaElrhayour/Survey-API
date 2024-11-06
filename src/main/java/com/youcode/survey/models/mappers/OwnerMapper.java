@@ -11,8 +11,10 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface OwnerMapper {
 
-    @Mapping(source = "name", target = "name")
+
     Owner  toEntity(OwnerCreatingDTO ownerCreatingDTO);
+
+    OwnerCreatingDTO toOwnerCreatingDTO(Owner owner);
 
     OwnerReadingDTO ReturnResponseWhenCreated(Owner owner);
 

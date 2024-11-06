@@ -24,7 +24,6 @@ public class Owner {
     private UUID id;
 
     @Column(unique=true)
-    @NotBlank(message = "The name can't be empty ")
     private String name;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
