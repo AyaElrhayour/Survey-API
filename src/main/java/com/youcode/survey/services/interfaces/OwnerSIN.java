@@ -1,6 +1,6 @@
 package com.youcode.survey.services.interfaces;
 
-import com.youcode.survey.models.dto.Owner.OwnerCreatingDTO;
+import com.youcode.survey.models.dto.Owner.OwnerDTO;
 import com.youcode.survey.models.dto.Owner.OwnerReadingEmbdDTO;
 
 import java.util.List;
@@ -8,12 +8,12 @@ import java.util.UUID;
 
 public interface OwnerSIN {
 
-    OwnerCreatingDTO createOwner(OwnerCreatingDTO ownerCreatingDTO);
+    OwnerDTO createOwner(OwnerDTO ownerDTO);
     List<OwnerReadingEmbdDTO> getAllOwners();
     OwnerReadingEmbdDTO getOwnerById(UUID id);
     OwnerReadingEmbdDTO getOwnerByName(String name);
     Boolean deleteOwnerById(UUID id);
-    OwnerCreatingDTO updateOwnerById(UUID id,OwnerCreatingDTO ownerCreatingDTO);
+    OwnerDTO updateOwnerById(UUID id, OwnerDTO ownerDTO);
 
     
 }

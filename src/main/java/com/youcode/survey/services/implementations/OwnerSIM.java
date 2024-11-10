@@ -1,12 +1,11 @@
 package com.youcode.survey.services.implementations;
 
 
-import com.youcode.survey.models.dto.Owner.OwnerCreatingDTO;
+import com.youcode.survey.models.dto.Owner.OwnerDTO;
 import com.youcode.survey.models.dto.Owner.OwnerReadingEmbdDTO;
 import com.youcode.survey.models.entities.Owner;
-import com.youcode.survey.models.mappers.OwnerMapper;
+import com.youcode.survey.mappers.OwnerMapper;
 import com.youcode.survey.repositories.OwnerRepository;
-import com.youcode.survey.repositories.SurveyRepository;
 import com.youcode.survey.services.interfaces.OwnerSIN;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,8 @@ public class OwnerSIM implements OwnerSIN {
     private OwnerMapper ownerMapper;
 
     @Override
-    public OwnerCreatingDTO createOwner(OwnerCreatingDTO ownerCreatingDTO) {
-        Owner toOwnerEntity = ownerMapper.toEntity(ownerCreatingDTO);
+    public OwnerDTO createOwner(OwnerDTO ownerDTO) {
+        Owner toOwnerEntity = ownerMapper.toEntity(ownerDTO);
         Owner owner = ownerRepository.save(toOwnerEntity);
         return ownerMapper.toOwnerCreatingDTO(owner);
     }
@@ -60,28 +59,23 @@ public class OwnerSIM implements OwnerSIN {
 
     @Override
     public Boolean deleteOwnerById(UUID id) {
-       try{
-           Optional<Owner> owner = ownerRepository.findById(id);
-           if (owner.isPresent()) {
-               ownerRepository.delete(owner.get());
-               return true;
-           }else {
-               throw new EntityNotFoundException("The owner with id " + id + " does not exist");
-           }
-       }catch (EntityNotFoundException e) {
-           e.printStackTrace();
-       }
-       return null ;
-    }
-
-    @Override
-    public OwnerCreatingDTO updateOwnerById(UUID id,OwnerCreatingDTO ownerCreatingDTO) {
         if (ownerRepository.existsById(id)) {
-            Owner owner = ownerMapper.toEntity(ownerCreatingDTO);
-            Owner updatedOwner = ownerRepository.save(owner);
-            return ownerMapper.toOwnerCreatingDTO(updatedOwner);
+            ownerRepository.deleteById(id);
+            return true ;
         }else {
             throw new EntityNotFoundException("The owner with id " + id + " does not exist");
         }
+    }
+
+    @Override
+    public OwnerDTO updateOwnerById(UUID id, OwnerDTO ownerDTO) {
+        Optional<Owner> owner = ownerRepository.findById(id);
+        if (owner.isPresent()) {
+            owner.get().setName(ownerDTO.getName());
+            return ownerMapper.toOwnerCreatingDTO(ownerRepository.save(owner.get()));
+        }else {
+            throw new EntityNotFoundException("The owner with id " + id + " does not exist");
+        }
+
     }
 }

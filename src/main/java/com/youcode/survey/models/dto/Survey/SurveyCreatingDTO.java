@@ -15,6 +15,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class SurveyCreatingDTO {
 
+    private UUID id;
+
     @NotBlank
     private String title;
 

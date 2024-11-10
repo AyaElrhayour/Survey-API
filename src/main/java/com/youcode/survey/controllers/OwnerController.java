@@ -1,10 +1,8 @@
 package com.youcode.survey.controllers;
 
 
-import com.youcode.survey.models.dto.Owner.OwnerCreatingDTO;
-import com.youcode.survey.models.dto.Owner.OwnerReadingDTO;
+import com.youcode.survey.models.dto.Owner.OwnerDTO;
 import com.youcode.survey.models.dto.Owner.OwnerReadingEmbdDTO;
-import com.youcode.survey.repositories.OwnerRepository;
 import com.youcode.survey.services.interfaces.OwnerSIN;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 @RestController
 @RequestMapping(path = "api/owners", produces = MediaType.APPLICATION_JSON_VALUE)
 @Validated
@@ -29,27 +25,27 @@ public class OwnerController {
     private OwnerSIN ownerSIN;
 
     @PostMapping
-    public OwnerCreatingDTO createOwner( @RequestBody OwnerCreatingDTO ownerCreatingDTO) {
-        System.out.println(ownerCreatingDTO);
-        return ownerSIN.createOwner(ownerCreatingDTO);
+    public ResponseEntity<OwnerDTO> createOwner(@Valid @RequestBody OwnerDTO ownerDTO) {
+        System.out.println(ownerDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ownerSIN.createOwner(ownerDTO));
     }
 
     @GetMapping
-    public List<OwnerReadingEmbdDTO> getAllOwners(){
-        return ownerSIN.getAllOwners();
+    public ResponseEntity<List<OwnerReadingEmbdDTO>> getAllOwners(){
+        return ResponseEntity.ok(ownerSIN.getAllOwners());
     }
 
-    @GetMapping("/{ownerId}")
+    @GetMapping("/{id}")
     public OwnerReadingEmbdDTO getOwnerById(@PathVariable UUID id){
         return ownerSIN.getOwnerById(id);
     }
 
-    @GetMapping("/byname/{ownerName}")
+    @GetMapping("/byname/{name}")
     public OwnerReadingEmbdDTO getOwnerByName(@PathVariable String name){
         return ownerSIN.getOwnerByName(name);
     }
 
-    @DeleteMapping("/{ownerId}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteOwnerById(@PathVariable UUID id){
         if (ownerSIN.deleteOwnerById(id)) {
             return ResponseEntity.noContent().build();
@@ -58,8 +54,8 @@ public class OwnerController {
         }
     }
 
-    @PutMapping("/{ownerId}")
-    public OwnerCreatingDTO updateOwnerById(@PathVariable UUID id, @RequestBody OwnerCreatingDTO ownerCreatingDTO){
-        return ownerSIN.updateOwnerById(id, ownerCreatingDTO);
+    @PutMapping("/{id}")
+    public OwnerDTO updateOwnerById(@PathVariable UUID id, @Valid @RequestBody OwnerDTO ownerDTO){
+        return ownerSIN.updateOwnerById(id, ownerDTO);
     }
 }

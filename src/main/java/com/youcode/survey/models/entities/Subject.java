@@ -29,6 +29,8 @@ public class Subject {
     @JoinColumn(name = "parentId")
     private Subject subject;
 
+    //wa Aya wa flana matnsych tzidi children dyal subject rah subject wa7d y9dr ykon 3ndo bzf children xo past aya
+
     @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
     private Set<Question> question;
 
