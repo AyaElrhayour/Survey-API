@@ -13,5 +13,5 @@ public interface SurveySIN {
     SurveyReadingDTO getSurveyById(UUID id);
     SurveyReadingDTO getSurveyByTitle(String title);
     boolean deleteSurvey(UUID id);
-    SurveyReadingDTO updateSurvey(UUID id, SurveyCreatingDTO surveyCreatingDTO);
+    SurveyCreatingDTO updateSurvey(UUID id, SurveyCreatingDTO surveyCreatingDTO);
 }

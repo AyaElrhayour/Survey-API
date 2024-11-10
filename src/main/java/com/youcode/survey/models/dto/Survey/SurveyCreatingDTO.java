@@ -23,7 +23,7 @@ public class SurveyCreatingDTO {
     @NotBlank
     private String description;
 
-    @Positive
+
     @NotNull
     private UUID ownerId;
 

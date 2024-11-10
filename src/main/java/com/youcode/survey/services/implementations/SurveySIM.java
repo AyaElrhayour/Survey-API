@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -64,12 +63,12 @@ public class SurveySIM implements SurveySIN {
     }
 
     @Override
-    public SurveyReadingDTO updateSurvey(UUID id, SurveyCreatingDTO  surveyCreatingDTO) {
+    public SurveyCreatingDTO updateSurvey(UUID id, SurveyCreatingDTO  surveyCreatingDTO) {
 
        Survey survey = surveyRepository.findById(id).orElseThrow(() -> new RuntimeException("Survey not found"));
         survey.setTitle(surveyCreatingDTO.getTitle());
         survey.setDescription(surveyCreatingDTO.getDescription());
         survey.setOwner(ownerRepository.findById(surveyCreatingDTO.getOwnerId()).orElseThrow(()-> new RuntimeException("Owner not found")));
-        return surveyMapper.toSurveyReadingEmbdDTO(surveyRepository.save(survey));
+        return surveyMapper.toSurveyCreatingDTO(surveyRepository.save(survey));
     }
 }
