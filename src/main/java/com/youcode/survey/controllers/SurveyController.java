@@ -3,7 +3,6 @@ package com.youcode.survey.controllers;
 
 import com.youcode.survey.models.dto.Survey.SurveyCreatingDTO;
 import com.youcode.survey.models.dto.Survey.SurveyReadingDTO;
-import com.youcode.survey.models.entities.Survey;
 import com.youcode.survey.repositories.SurveyRepository;
 import com.youcode.survey.services.interfaces.SurveySIN;
 import jakarta.validation.Valid;
