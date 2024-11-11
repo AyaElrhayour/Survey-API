@@ -12,7 +12,6 @@ import java.util.UUID;
 public interface SubjectRepository extends JpaRepository<Subject, UUID> {
 
     Optional<Subject> findByTitle(String title);
-//    List<Subject> findAllByParentIdIsNull();
-//    List<Subject> findAllByParentId(UUID id);
+
 
 }

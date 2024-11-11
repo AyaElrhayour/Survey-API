@@ -17,5 +17,5 @@ public class SubjectResponseDTO {
     private UUID id;
     private String title;
     private SurveyEditionOnlyDTO surveyEditionOnlyDTO;
-    private List<SubjectParentResponseDTO> subjectParentResponseDTOList;
+    private List<SubjectOnlyDTO> children;
 }

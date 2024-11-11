@@ -2,6 +2,7 @@ package com.youcode.survey.services.implementations;
 
 import com.youcode.survey.mappers.SurveyEditionMapper;
 import com.youcode.survey.models.dto.SurveyEdition.SurveyEditionCreatingDTO;
+import com.youcode.survey.models.dto.SurveyEdition.SurveyEditionOnlyDTO;
 import com.youcode.survey.models.dto.SurveyEdition.SurveyEditionReadingDTO;
 import com.youcode.survey.models.entities.Survey;
 import com.youcode.survey.models.entities.SurveyEdition;
@@ -37,12 +38,12 @@ public class SurveyEditionSIM implements SurveyEditionSIN {
     }
 
     @Override
-    public List<SurveyEditionReadingDTO> getAllSurveyEditions() {
+    public List<SurveyEditionOnlyDTO> getAllSurveyEditions() {
         List<SurveyEdition> surveyEditionList = surveyEditionRepository.findAll();
         if (surveyEditionList.isEmpty()) {
             throw new RuntimeException("No survey found");
         }
-        return surveyEditionList.stream().map(surveyEditionMapper::toSurveyEditionReadingDTO).toList();
+        return surveyEditionList.stream().map(surveyEditionMapper::toSurveyEditionOnlyDTO).toList();
     }
 
     @Override

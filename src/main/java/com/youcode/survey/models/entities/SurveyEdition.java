@@ -35,7 +35,7 @@ public class SurveyEdition {
     @OneToMany(mappedBy = "surveyEdition" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Subject> subjects;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Survey survey;
 
 }

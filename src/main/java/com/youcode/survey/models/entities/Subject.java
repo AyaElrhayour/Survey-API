@@ -27,14 +27,15 @@ public class Subject {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parentId")
-    private Subject subject;
+    private Subject parent;
 
-    //Flana matnsych tzidi children dyal subject rah subject wa7d y9dr ykon 3ndo bzf children -xo past aya-
+   @OneToMany(mappedBy = "parent" , fetch = FetchType.LAZY)
+   private Set<Subject> children;
 
     @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
     private Set<Question> question;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private SurveyEdition surveyEdition;
 
 

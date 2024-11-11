@@ -2,6 +2,7 @@ package com.youcode.survey.controllers;
 
 
 import com.youcode.survey.models.dto.SurveyEdition.SurveyEditionCreatingDTO;
+import com.youcode.survey.models.dto.SurveyEdition.SurveyEditionOnlyDTO;
 import com.youcode.survey.models.dto.SurveyEdition.SurveyEditionReadingDTO;
 import com.youcode.survey.models.entities.SurveyEdition;
 import com.youcode.survey.repositories.SurveyEditionRepository;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "api/surveyEdition" , produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "api/surveyEditions" , produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
 public class SurveyEditionController {
 
@@ -32,7 +33,7 @@ public class SurveyEditionController {
     }
 
     @GetMapping
-    public List<SurveyEditionReadingDTO> getAll() {
+    public List<SurveyEditionOnlyDTO> getAll() {
         return surveyEditionSIN.getAllSurveyEditions();
     }
 
@@ -48,7 +49,7 @@ public class SurveyEditionController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteSurveyEdition(@PathVariable UUID id) {
-        if (surveyEditionRepository.existsById(id)) {
+        if (surveyEditionSIN.deleteSurveyEditionById(id)) {
             return ResponseEntity.noContent().build();
         }else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Survey Edition Not Found");
