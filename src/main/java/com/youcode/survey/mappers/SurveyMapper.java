@@ -10,6 +10,6 @@ public interface SurveyMapper {
 
     Survey toSurvey(SurveyCreatingDTO surveyCreatingDTO);
     SurveyCreatingDTO toSurveyCreatingDTO(Survey survey);
-    SurveyReadingDTO toSurveyReadingEmbdDTO(Survey survey);
+    SurveyReadingDTO toSurveyReadingDTO(Survey survey);
 
 }

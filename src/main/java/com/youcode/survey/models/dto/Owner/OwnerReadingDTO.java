@@ -1,7 +1,7 @@
 package com.youcode.survey.models.dto.Owner;
 
 
-import com.youcode.survey.models.dto.Survey.SurveyReadingDTO;
+import com.youcode.survey.models.dto.Survey.SurveyOnlyDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +12,9 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OwnerReadingEmbdDTO {
+public class OwnerReadingDTO {
 
     private UUID id;
     private String name;
-    private List<SurveyReadingDTO> surveys;
+    private List<SurveyOnlyDTO> surveys;
 }

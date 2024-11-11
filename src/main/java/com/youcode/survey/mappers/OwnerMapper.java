@@ -2,7 +2,7 @@ package com.youcode.survey.mappers;
 
 
 import com.youcode.survey.models.dto.Owner.OwnerDTO;
-import com.youcode.survey.models.dto.Owner.OwnerReadingEmbdDTO;
+import com.youcode.survey.models.dto.Owner.OwnerReadingDTO;
 import com.youcode.survey.models.entities.Owner;
 import org.mapstruct.Mapper;
 
@@ -14,5 +14,5 @@ public interface OwnerMapper {
 
     OwnerDTO toOwnerCreatingDTO(Owner owner);
 
-    OwnerReadingEmbdDTO ReturnResponseWhenReading(Owner owner);
+    OwnerReadingDTO ReturnResponseWhenReading(Owner owner);
 }

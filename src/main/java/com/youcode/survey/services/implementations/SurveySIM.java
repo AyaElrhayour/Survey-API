@@ -38,19 +38,19 @@ public class SurveySIM implements SurveySIN {
        if (surveys.isEmpty()) {
            throw new RuntimeException("No surveys found");
        }
-       return surveys.stream().map(surveyMapper::toSurveyReadingEmbdDTO).toList();
+       return surveys.stream().map(surveyMapper::toSurveyReadingDTO).toList();
     }
 
     @Override
     public SurveyReadingDTO getSurveyById(UUID id) {
             Survey survey = surveyRepository.findById(id).orElseThrow(()-> new RuntimeException("Survey not found"));
-            return surveyMapper.toSurveyReadingEmbdDTO(survey);
+            return surveyMapper.toSurveyReadingDTO(survey);
     }
 
     @Override
     public SurveyReadingDTO getSurveyByTitle(String title) {
             Survey survey = surveyRepository.findByTitle(title).orElseThrow(()-> new RuntimeException("Survey not found"));
-            return surveyMapper.toSurveyReadingEmbdDTO(survey);
+            return surveyMapper.toSurveyReadingDTO(survey);
     }
 
     @Override

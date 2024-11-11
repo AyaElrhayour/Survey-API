@@ -2,7 +2,7 @@ package com.youcode.survey.controllers;
 
 
 import com.youcode.survey.models.dto.Owner.OwnerDTO;
-import com.youcode.survey.models.dto.Owner.OwnerReadingEmbdDTO;
+import com.youcode.survey.models.dto.Owner.OwnerReadingDTO;
 import com.youcode.survey.services.interfaces.OwnerSIN;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +31,17 @@ public class OwnerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<OwnerReadingEmbdDTO>> getAllOwners(){
+    public ResponseEntity<List<OwnerReadingDTO>> getAllOwners(){
         return ResponseEntity.ok(ownerSIN.getAllOwners());
     }
 
     @GetMapping("/{id}")
-    public OwnerReadingEmbdDTO getOwnerById(@PathVariable UUID id){
+    public OwnerReadingDTO getOwnerById(@PathVariable UUID id){
         return ownerSIN.getOwnerById(id);
     }
 
     @GetMapping("/byname/{name}")
-    public OwnerReadingEmbdDTO getOwnerByName(@PathVariable String name){
+    public OwnerReadingDTO getOwnerByName(@PathVariable String name){
         return ownerSIN.getOwnerByName(name);
     }
 

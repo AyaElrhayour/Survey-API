@@ -19,6 +19,6 @@ public class SurveyReadingDTO {
     private String title;
     private String description;
     private OwnerDTO owner;
-    private Set<SurveyEditionOnlyDTO> surveyEditionOnlyDTOS;
+    private Set<SurveyEditionOnlyDTO> surveyEditions;
 
 }

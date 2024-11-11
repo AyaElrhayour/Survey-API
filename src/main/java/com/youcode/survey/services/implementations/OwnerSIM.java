@@ -2,7 +2,7 @@ package com.youcode.survey.services.implementations;
 
 
 import com.youcode.survey.models.dto.Owner.OwnerDTO;
-import com.youcode.survey.models.dto.Owner.OwnerReadingEmbdDTO;
+import com.youcode.survey.models.dto.Owner.OwnerReadingDTO;
 import com.youcode.survey.models.entities.Owner;
 import com.youcode.survey.mappers.OwnerMapper;
 import com.youcode.survey.repositories.OwnerRepository;
@@ -32,13 +32,13 @@ public class OwnerSIM implements OwnerSIN {
     }
 
     @Override
-    public List<OwnerReadingEmbdDTO> getAllOwners() {
+    public List<OwnerReadingDTO> getAllOwners() {
         List<Owner> ownerList = ownerRepository.findAll();
         return ownerList.stream().map(ownerMapper::ReturnResponseWhenReading).toList();
     }
 
     @Override
-    public OwnerReadingEmbdDTO getOwnerById(UUID id) {
+    public OwnerReadingDTO getOwnerById(UUID id) {
         if (ownerRepository.existsById(id)) {
             Owner owner = ownerRepository.findById(id).get();
             return ownerMapper.ReturnResponseWhenReading(owner);
@@ -48,7 +48,7 @@ public class OwnerSIM implements OwnerSIN {
     }
 
     @Override
-    public OwnerReadingEmbdDTO getOwnerByName(String name) {
+    public OwnerReadingDTO getOwnerByName(String name) {
         Optional<Owner> owner = ownerRepository.findByName(name);
         if (owner.isPresent()) {
             return ownerMapper.ReturnResponseWhenReading(owner.get());

@@ -30,8 +30,8 @@ public class SurveyController {
     }
 
     @GetMapping
-    public List<Survey> getAllSurveys() {
-        return surveyRepository.findAll();
+    public List<SurveyReadingDTO> getAllSurveys() {
+        return surveySIN.getAllSurveys();
     }
 
     @GetMapping("/{id}")
