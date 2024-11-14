@@ -25,11 +25,11 @@ public class Subject {
     @Column
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parentId")
+    @ManyToOne
+    @JoinColumn(name = "parent")
     private Subject parent;
 
-   @OneToMany(mappedBy = "parent" , fetch = FetchType.LAZY)
+   @OneToMany(mappedBy = "parent" , fetch = FetchType.EAGER)
    private Set<Subject> children;
 
     @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
@@ -37,6 +37,5 @@ public class Subject {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private SurveyEdition surveyEdition;
-
 
 }

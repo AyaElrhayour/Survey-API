@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -43,7 +44,16 @@ public class SubjectSIM implements SubjectSIN {
     @Override
     public SubjectResponseDTO getSubjectById(UUID id) {
         Subject subject = subjectRepository.findById(id).orElseThrow(() -> new RuntimeException("Subject not found"));
-        return subjectMapper.toSubjectResponseDTO(subject);
+        SubjectResponseDTO subjectResponseDTO = subjectMapper.toSubjectResponseDTO(subject);
+
+        if (subject.getChildren() != null && !subject.getChildren().isEmpty()) {
+            List<SubjectOnlyDTO> children = subject.getChildren()
+                    .stream()
+                    .map(child -> subjectMapper.toSubjectOnlyDTO(child))
+                    .collect(Collectors.toList());
+            subjectResponseDTO.setChildren(children);
+        }
+        return subjectResponseDTO;
     }
 
     @Override
