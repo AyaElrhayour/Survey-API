@@ -1,8 +1,8 @@
-package com.youcode.survey.models.dto.Question;
+package com.youcode.survey.models.dto.Answer;
 
 
-import com.youcode.survey.models.enums.Type;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,14 +12,13 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestionCreatingDTO {
-
-    private UUID id;
+public class AnswerCreatingDTO {
 
     @NotBlank
     private String text;
 
-    private Type type;
+    @NotNull
+    private Integer selectionCount = 0;
 
-    private UUID subjectId;
+    private UUID questionId;
 }
