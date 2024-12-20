@@ -30,7 +30,7 @@ public class Question {
     private Type type;
 
     @Column
-    private int answerCount;
+    private int answersCount;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Subject subject;

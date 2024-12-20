@@ -20,5 +20,6 @@ public class AnswerCreatingDTO {
     @NotNull
     private Integer selectionCount = 0;
 
+    @NotNull
     private UUID questionId;
 }

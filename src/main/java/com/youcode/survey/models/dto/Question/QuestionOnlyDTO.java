@@ -19,5 +19,5 @@ public class QuestionOnlyDTO {
 
     private String text;
 
-    private Integer answerCount;
+    private int answersCount;
 }
